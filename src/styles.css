@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;500&family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+	text-decoration: none;
+}
+
+#root,html,body{
+    height: 100%;
+    background-color: bisque;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+}
+
+header,footer{
+    height: 50vh;
+    background-color: rgba(0, 0, 79, 0.6);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.brand{
+    font-size: 2.5rem;
+    color: goldenrod;
+    font-family: 'Satisfy', cursive;
+}
+header > *, footer > *{
+    width: 22%;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+nav > a{
+    color: white;
+    font-size: 1.2rem;
+}
+footer{
+    color: white;
+    font-weight: 300;
+    font-size: 1.3rem;
+    padding: 1.3rem;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+img{
+    width: 100%;
+}
+.material-icons{
+    color: white;
+    font-size: 1.3rem;
+}
+.userName{
+    font-size: 1.3rem;
+    position: absolute;
+    right: 10rem;
+    padding: 1rem;
+    margin: .5rem;
+    background-color: bisque;
+}
+.social{
+    display: flex;
+    justify-content: space-evenly;
+}
+.social > a{
+    color: white;
+}
+.hero{
+    position: absolute;
+    left: 2rem;
+    color: white;
+    padding: 2rem;
+    top: 16rem;
+    border-radius: 0.3rem;
+}
+.hero-title{
+    font-weight: 500;
+    font-size: 2.4rem;
+    border-bottom: 2px solid rgba(185, 140, 27, .7);
+}
+.hero-text{
+    font-weight: 200;
+    font-size: 1.9rem;
+}
+.hero-button{
+    position: relative;
+    width: 8rem ;    
+    height: 2.5rem;
+    margin-top: .8rem;
+    background-color: rgba(185, 140, 27, .7);
+    color: white;
+    border: none;
+    font-weight: 100;
+    font-size:  1.2rem;
+}
+.hero-brand{
+    font-family: 'Satisfy', cursive;
+    font-size: 2.5rem;
+}
