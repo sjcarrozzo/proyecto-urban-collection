@@ -1,10 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import NavBar from './NavBar'
 
 function Header(){
     return(
         <header>
-            <span className="brand">Urban Collection</span>
+            <Link to="/">
+                <span className="brand">Urban Collection</span>
+            </Link>
             <NavBar/>
         </header>
     )

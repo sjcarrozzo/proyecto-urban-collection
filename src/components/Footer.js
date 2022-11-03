@@ -5,9 +5,9 @@ function Footer(){
     return(
         <footer>
             <div className="social">
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
+                <a href="https://www.instagram.com/urban-collection">Instagram</a>
+                <a href="https://www.facebook.com/urban-collection">Facebook</a>
+                <a href="https://www.twitter.com/urban-collection">Twitter</a>
             </div>
            © Todos los derechos reservados - 2022
         </footer>

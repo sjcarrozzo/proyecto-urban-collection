@@ -1,21 +1,20 @@
 import React from 'react'
 import ItemListContainer from './ItemListContainer'
+import ItemDetailContainer from './ItemDetailContainer'
+import { Routes, Route } from 'react-router-dom'
 
-
-function Main(prop){
-    
-    let userName = prop.userName    
-    
+function Main(){
+      
     return(
         <main>
-            <ItemListContainer userName="Sebastian"/>
-            <div className="hero">
-                <p className="hero-title">Bienvenidos a <span className="hero-brand">Urban Collection</span></p>
-                <p className="hero-text">Contamos con lo último en indumentaria para vos</p>
-                <button className="hero-button">Shop Now</button>
-            </div>
-            <img src="/img/girl-yellow-dress.webp"></img>
-        </main>            
+            <Routes>
+                <Route path="/" element={<ItemListContainer/>}/>
+                <Route path="/category/:categoryId" element={<ItemListContainer/>}/>
+                <Route path="/item/:itemId" element={<ItemDetailContainer/>}/>
+                <Route path="/contacto" element={<h1>contacto</h1>}/>
+                <Route path="*" element={<div className="error-message">ERROR 404</div>}/>
+            </Routes>
+        </main>      
     )
 }
 
