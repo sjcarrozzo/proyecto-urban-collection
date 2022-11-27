@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore"
+import { getFirestore, collection, getDocs, query,where, addDoc, doc, getDoc } from "firebase/firestore"
 
 const firebaseConfig = {
   apiKey: "AIzaSyCwzNOpHvveFNlC4kmdpzG219Lcw3qFVu8",
@@ -10,5 +10,37 @@ const firebaseConfig = {
   appId: "1:606690544676:web:bc7cf5c2ed2a3f88811cb1"
 };
 
-export const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+function getCollectionWithName(collectionName){
+  return collection(db, collectionName)
+}
+
+export function createCustomerOrder(order){
+  
+  const collection = getCollectionWithName("orders")
+  return addDoc( collection, order)
+
+}
+
+export function getProductWithId(itemId){
+  
+  const collection = getCollectionWithName("products")
+  const reference = doc(collection, itemId)
+  return getDoc(reference)
+
+}
+
+export function getAllProducts(){
+  const collection = getCollectionWithName("products")
+  return getDocs(collection)
+}
+
+export function getProductsWithCategory(category){
+  
+  const collection = getCollectionWithName("products")
+  const categoryQuery = query(collection, where("category","==",category))
+  return getDocs(categoryQuery)
+
+}

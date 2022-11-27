@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import ItemList from "./ItemList"
-import { db } from "./firebase"
-import { collection, getDocs, query,where } from "firebase/firestore"
+import { getAllProducts, getProductsWithCategory } from "./firebase"
 
 function ItemListContainer(){
 
@@ -13,19 +12,14 @@ function ItemListContainer(){
         getProducts(categoryId)
     },[categoryId])
 
-    const productsCollection = collection(db,"products")
-
     const getProducts = ((category)=>{
         
         let response
 
         if( category ){
-            
-            const categoryQuery = query(productsCollection, where("category","==",category))
-            response = getDocs(categoryQuery)
-
+            response = getProductsWithCategory(categoryId)
         }else{
-            response = getDocs(productsCollection)
+            response = getAllProducts()
         }
     
         response

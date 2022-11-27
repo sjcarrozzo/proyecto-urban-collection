@@ -1,8 +1,8 @@
 import { useState} from "react"
 import { useCart } from "./CustomProvider"
 import OrderForm from "./OrderForm"
-import { db } from "./firebase"
-import { addDoc, collection, serverTimestamp } from "firebase/firestore"
+import { createCustomerOrder } from "./firebase"
+import { serverTimestamp } from "firebase/firestore"
 
 const Cart = () => {
     const contextValue = useCart()
@@ -29,9 +29,7 @@ const Cart = () => {
             date: serverTimestamp()
         }
 
-        const ordersCollection = collection(db, "orders")
-        const response = addDoc(ordersCollection, order)
-        
+        const response = createCustomerOrder(order)
         response
             .then(  res => {
                 setConfirmationCode(res.id)

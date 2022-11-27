@@ -6,9 +6,6 @@ const ItemDetail = ({product}) => {
     const contextValue = useCart() 
     
     function handleOnConfirm(units){
-        //console.log("Se agregaron " + units + " " + product.name + " al carrito")
-        //toasty de se agregaron X cantidad de producto X.
-
         contextValue.addUnitsOfProduct(units, product)
     }
 

@@ -13,14 +13,12 @@ const ItemCount = ({handleOnConfirm, productStock}) => {
         if ( units > 1 ) {
             setUnits( units - 1)
         }
-        //por falso -> toasty error por numero negativo
     }
     
     function handleAddUnit(){
         if( units < productStock ){
             setUnits( units + 1)
         }
-        //por falso -> toasty error por superar stock
     }
    
     return (
