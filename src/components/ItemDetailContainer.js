@@ -1,24 +1,32 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import productsList from "./utils"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import ItemDetail from "./ItemDetail"
+import { db } from "./firebase"
+import { getDoc, doc, collection } from "firebase/firestore"
 
 const ItemDetailContainer = () => {
-    
-    const { itemId } = useParams()
-    let productoAMostrar = productsList.find( product => product.code === parseInt(itemId) )
 
-    return (
+    const { itemId } = useParams()
+    const [product, setProduct] = useState({})
+    
+    useEffect(()=>{
+        const productsCollection = collection(db,"products")
+        const reference = doc(productsCollection, itemId)
+        const response = getDoc(reference)
+    
+        response
+            .then((productResponse) =>{
+                setProduct(productResponse.data())
+            })
+            .catch( error =>{ 
+                console.log(error)
+            })
+    },[])
+    
+    return(
         <section className="product-detail-container">
-            <img className="image-detail" src={productoAMostrar.imageSrc} alt={productoAMostrar.imageAlt}></img>
-            <div className="product-detail">
-                <span className="product-detail-name">{productoAMostrar.name}</span>
-                <p className="product-detail-description">{productoAMostrar.description}</p>
-                <div className="product-column">
-                    <span className="product-detail-price">${productoAMostrar.price}</span>
-                    <button className="product-detail-button">Comprar</button>
-                </div>
-            </div>   
-        </section>   
+            <ItemDetail product={product}/>
+        </section>
     )
 }
 

@@ -9,7 +9,7 @@ function Footer(){
                 <a href="https://www.facebook.com/urban-collection">Facebook</a>
                 <a href="https://www.twitter.com/urban-collection">Twitter</a>
             </div>
-           © Todos los derechos reservados - 2022
+           SCDesign © 2022
         </footer>
     )
 }

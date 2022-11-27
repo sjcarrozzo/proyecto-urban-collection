@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import ItemList from "./ItemList"
-import productsList from "./utils"
+import { db } from "./firebase"
+import { collection, getDocs, query,where } from "firebase/firestore"
 
 function ItemListContainer(){
 
@@ -12,32 +13,35 @@ function ItemListContainer(){
         getProducts(categoryId)
     },[categoryId])
 
+    const productsCollection = collection(db,"products")
+
     const getProducts = ((category)=>{
         
-        let request = new Promise((res)=>{
-            setTimeout(()=>{
-                res(productsList)
-            },2000)
-        })
+        let response
 
-        request
-        .then((productsResponse)=>{          
+        if( category ){
+            
+            const categoryQuery = query(productsCollection, where("category","==",category))
+            response = getDocs(categoryQuery)
 
-            if( category ){
-                let filteredProducts = productsResponse.filter( product => product.category === category )      
-                setProducts(filteredProducts)
-            }else{
-                setProducts(productsResponse)
-            }
-        })
-        .catch((error)=>{
-            console.log(error)
-        })
+        }else{
+            response = getDocs(productsCollection)
+        }
+    
+        response
+            .then((productsResponse)=>{          
+
+                const products = productsResponse.docs.map( doc => ({ ...doc.data(), id: doc.id }))
+                setProducts(products)
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
     })
 
     return (
         <>
-            { products.length === 0 ? <div className="loading-message"><div className="loader">Loading...</div></div> : <ItemList productsList={products} categoryId={categoryId}/> }
+            { products.length === 0 ? <div className="loader">Loading...</div> : <ItemList productsList={products} categoryId={categoryId}/> }
         </>
     )
 }

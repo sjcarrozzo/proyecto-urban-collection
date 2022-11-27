@@ -10,7 +10,6 @@ function NavBar(){
             <Link to="/category/camisas">Camisas</Link>
             <Link to="/category/buzos">Buzos</Link>
             <Link to="/category/jeans">Jeans</Link>
-            <Link to="/contacto">Contacto</Link>
             <CartWidget/> 
         </nav>
     )

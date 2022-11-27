@@ -1,17 +1,16 @@
-import React,{useState} from 'react'
+import { useCart } from "./CustomProvider"
+import { Link } from "react-router-dom"
 
 function CartWidget(){
-    
-    let [productsNumber, addProduct] = useState(0)        
-    
+         
+    const contextValue = useCart()
+
     return(
-        <div id="cart-widget">
+        <Link to="/cart" id="cart-widget">
             <span id="cart-icon" className="material-icons" color="white">shopping_cart</span>
-            <span id="cart-counter">{productsNumber}</span>
-        </div>
+            <span id="cart-counter">{contextValue.counter}</span>
+        </Link>
     )
 }
 
 export default CartWidget
-
-
